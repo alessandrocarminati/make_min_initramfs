@@ -4,7 +4,7 @@ BUILDS_DIR := builds
 
 TARGETS := $(patsubst $(BINARIES_DIR)/%-busybox,%, $(wildcard $(BINARIES_DIR)/*-busybox))
 
-ifeq (,$(filter $(MAKECMDGOALS),$(TARGETS)))
+ifeq (,$(filter $(MAKECMDGOALS),$(TARGETS) clean))
     ifneq ($(MAKECMDGOALS),)
         $(error Unknown target "$(MAKECMDGOALS)". Available targets: $(TARGETS))
     endif
@@ -16,3 +16,6 @@ $(TARGETS):
 	find . -print0 | cpio --null -o --format=newc > ../$(BUILDS_DIR)/$@-initramfs.cpio
 
 .PHONY: $(TARGETS)
+
+clean:
+	rm -rf builds/*.cpio
