@@ -12,7 +12,7 @@ endif
 
 $(TARGETS):
 	cd $(ROOTFS_DIR) && \
-	cp ../$(BINARIES_DIR)/$@-busybox bin && \
+	cp ../$(BINARIES_DIR)/$@-busybox bin/busybox && \
 	find . -print0 | cpio --null -o --format=newc > ../$(BUILDS_DIR)/$@-initramfs.cpio
 
 .PHONY: $(TARGETS)
