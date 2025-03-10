@@ -1,0 +1,4 @@
+::sysinit:/bin/mount -t proc proc /proc
+::sysinit:/bin/mount -o remount,rw /
+
+::respawn:/bin/sh
